@@ -32,18 +32,20 @@ class InterfazCalculadora {
     }
 
     crearInterfaz() {
-        this.input1 = document.createElement('input');
-        this.input2 = document.createElement('input');
-        this.resultado = document.createElement('h2');
-        this.divCalculadora.appendChild(this.input1);
-        this.divCalculadora.appendChild(this.input2);
-        this.divCalculadora.appendChild(this.resultado);
+        this.input1 = this.crearElemento('input');
+        this.input2 = this.crearElemento('input');
+        this.resultado = this.crearElemento('h2');
         ['+', '-', '*', '/'].forEach((operacion) => {
-            let boton = document.createElement('button');
+            let boton = this.crearElemento('button');
             boton.innerText = operacion;
             boton.onclick = () => this.calcular(operacion);
-            this.divCalculadora.appendChild(boton);
         });
+    }
+
+    crearElemento(tipo) {
+        let elemento = document.createElement(tipo);
+        this.divCalculadora.appendChild(elemento);
+        return elemento;
     }
 
     calcular(operacion) {
@@ -70,7 +72,7 @@ class InterfazCalculadora {
             this.resultado.innerText = error.message;
         }
     }
-}
 
-// Crear la interfaz de la calculadora
+
+
 new InterfazCalculadora();
